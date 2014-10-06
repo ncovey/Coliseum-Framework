@@ -56,7 +56,7 @@ namespace EGG
 		// pointer past the last element (NULL)
 		T* m_end;
 		// array of nodes pointing to data of type T
-		node<T>* m_Data;
+		node* m_Data;
 	};
 }
 

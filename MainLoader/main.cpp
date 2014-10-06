@@ -25,162 +25,156 @@ using namespace AfterMath;
 
 int main()
 {
-	{
-		EGG::list_d<vec3> ld_vec = EGG::list_d<vec3>();
+	
+	int32 a(3), b(-7);
+	std::cout << "3^(-7) = " << fpow(3, -7) << std::endl;
+	std::cout << "1.28347 ^ 25.323489 = " << fpow(1.28347 , 25.323489) << std::endl;
+	std::cout << "155 ^ -1/2 = " << frsqrt(155) << std::endl;
+	std::cout << "sqrt 144 = " << fsqrt(144) << std::endl;
+	std::cout << "ln (345454656565) = " << fln(345454656565) << std::endl;
+	std::cout << "size of vec3 : " << sizeof(vec3) << std::endl;
+	printf("3^7=%d", pow(3, 7));
 
+	{
+		//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
+		CF::EGG::vect<AfterMath::vec3*> vec = CF::EGG::vect<AfterMath::vec3*>();
+		for (uint32 i = 0; i < 128; i++)
+		{
+			vec.pushfront(new AfterMath::vec3(i, i + 1, i + 2));
+		}
+
+		CF::EGG::vect<AfterMath::vec3*> vec2 = vec;
+
+		// deep copy
+		for (uint32 i = 0; i < vec.size(); i++)
+			vec2[i] = new vec3(*vec[i]);
+
+		for (uint32 i = 0; i < vec2.size(); i++)
+		{
+			std::cout << "vec2[" << i << "] = {"
+				<< vec2[i]->x << ","
+				<< vec2[i]->y << ","
+				<< vec2[i]->z << "}" << std::endl;
+		}
+
+		for (uint32 i = 0; i < vec.size(); i++)
+			vec[i]->normalize();
+
+		//vec2 = vec;
+
+		for (uint32 i = 0; i < vec2.size(); i++)
+		{
+			std::cout << "vec2[" << i << "] = {"
+				<< vec2[i]->x << ","
+				<< vec2[i]->y << ","
+				<< vec2[i]->z << "}" << std::endl;
+		}
+
+		vec.condense();
+		vec2.condense();
+
+		auto vec3 = vec + vec2;
+		uint32 i(0);
+		while (vec3.size() > 0)
+		{
+			vec3.removefront();
+			vec3.condense();
+			vec3[0]->normalize();
+			std::cout << "vec3[" << i++ << "] = {"
+				<< vec3[0]->x << ","
+				<< vec3[0]->y << ","
+				<< vec3[0]->z << "}" << std::endl;
+		}
+
+		// clean up
+		for (uint32 i = 0; i < vec.size(); i++)
+			delete vec[i];
+
+		for (uint32 i = 0; i < vec2.size(); i++)
+			delete vec2[i];
+
+		for (uint32 i = 0; i < vec3.size(); i++)
+			delete vec3[i];
 
 	}
 
+	{
+		//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
+		CF::EGG::vect<AfterMath::vec3> vec = CF::EGG::vect<AfterMath::vec3>();
+		for (uint32 i = 0; i < 45; i++)
+		{
+			vec.pushfront(AfterMath::vec3(i, i + 1, i + 2));
+		}
 
-	//int32 a(3), b(-7);
-	//std::cout << "3^(-7) = " << fpow(3, -7) << std::endl;
-	//std::cout << "1.28347 ^ 25.323489 = " << fpow(1.28347 , 25.323489) << std::endl;
-	//std::cout << "155 ^ -1/2 = " << frsqrt(155) << std::endl;
-	//std::cout << "sqrt 144 = " << fsqrt(144) << std::endl;
-	//std::cout << "ln (345454656565) = " << fln(345454656565) << std::endl;
-	//std::cout << "size of vec3 : " << sizeof(vec3) << std::endl;
-	//printf("3^7=%d", pow(3, 7));
+		CF::EGG::vect<AfterMath::vec3> vec2 = vec;
+		vec.condense();
+		vec2.condense();
 
-	//{
-	//	//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
-	//	CF::EGG::vect<AfterMath::vec3*> vec = CF::EGG::vect<AfterMath::vec3*>();
-	//	for (uint32 i = 0; i < 128; i++)
-	//	{
-	//		vec.pushfront(new AfterMath::vec3(i, i + 1, i + 2));
-	//	}
+		for (uint32 i = 0; i < vec.size(); i++)
+			vec[i].normalize();
 
-	//	CF::EGG::vect<AfterMath::vec3*> vec2 = vec;
+		for (uint32 i = 0; i < vec2.size(); i++)
+		{
+			std::cout << "vec2[" << i << "] = {"
+				<< vec2[i].x << ","
+				<< vec2[i].y << ","
+				<< vec2[i].z << "}" << std::endl;
+		}
 
-	//	// deep copy
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//		vec2[i] = new vec3(*vec[i]);
+		for (uint32 i = 0; i < vec.size(); i++)
+		{
+			std::cout << "vec[" << i << "] = {"
+				<< vec[i].x << ","
+				<< vec[i].y << ","
+				<< vec[i].z << "}" << std::endl;
+		}
+	}
 
-	//	for (uint32 i = 0; i < vec2.size(); i++)
-	//	{
-	//		std::cout << "vec2[" << i << "] = {"
-	//			<< vec2[i]->x << ","
-	//			<< vec2[i]->y << ","
-	//			<< vec2[i]->z << "}" << std::endl;
-	//	}
+	{
+		CF::EGG::vect<AfterMath::vec3> vec = CF::EGG::vect<AfterMath::vec3>();
+		for (uint32 i = 0; i < 5; i++)
+		{
+			vec.pushback(AfterMath::vec3(i, i + 1, i + 2));
+		}
 
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//		vec[i]->normalize();
+		for (uint32 i = 0; i < 5; i++)
+		{
+			vec.insertafter(3, AfterMath::vec3(-1,-1,-1));
+		}
 
-	//	//vec2 = vec;
+		vec.removeback();
 
-	//	for (uint32 i = 0; i < vec2.size(); i++)
-	//	{
-	//		std::cout << "vec2[" << i << "] = {"
-	//			<< vec2[i]->x << ","
-	//			<< vec2[i]->y << ","
-	//			<< vec2[i]->z << "}" << std::endl;
-	//	}
+		for (uint32 i = 0; i < vec.size(); i++)
+		{
+			std::cout << "vec[" << i << "] = {"
+				<< vec[i].x << ","
+				<< vec[i].y << ","
+				<< vec[i].z << "}" << std::endl;
+		}
 
-	//	vec.condense();
-	//	vec2.condense();
+		auto little_vec = CF::EGG::vect<AfterMath::vec3>();
 
-	//	auto vec3 = vec + vec2;
-	//	uint32 i(0);
-	//	while (vec3.size() > 0)
-	//	{
-	//		vec3.removefront();
-	//		vec3.condense();
-	//		vec3[0]->normalize();
-	//		std::cout << "vec3[" << i++ << "] = {"
-	//			<< vec3[0]->x << ","
-	//			<< vec3[0]->y << ","
-	//			<< vec3[0]->z << "}" << std::endl;
-	//	}
+		for (uint32 i = 0; i < 5; i++)
+		{
+			little_vec.pushback(AfterMath::vec3(i,i,i));
+		}
 
-	//	// clean up
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//		delete vec[i];
+		auto vec2 = vec + little_vec;
 
-	//	for (uint32 i = 0; i < vec2.size(); i++)
-	//		delete vec2[i];
-
-	//	for (uint32 i = 0; i < vec3.size(); i++)
-	//		delete vec3[i];
-
-	//}
-
-	//{
-	//	//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
-	//	CF::EGG::vect<AfterMath::vec3> vec = CF::EGG::vect<AfterMath::vec3>();
-	//	for (uint32 i = 0; i < 45; i++)
-	//	{
-	//		vec.pushfront(AfterMath::vec3(i, i + 1, i + 2));
-	//	}
-
-	//	CF::EGG::vect<AfterMath::vec3> vec2 = vec;
-	//	vec.condense();
-	//	vec2.condense();
-
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//		vec[i].normalize();
-
-	//	for (uint32 i = 0; i < vec2.size(); i++)
-	//	{
-	//		std::cout << "vec2[" << i << "] = {"
-	//			<< vec2[i].x << ","
-	//			<< vec2[i].y << ","
-	//			<< vec2[i].z << "}" << std::endl;
-	//	}
-
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//	{
-	//		std::cout << "vec[" << i << "] = {"
-	//			<< vec[i].x << ","
-	//			<< vec[i].y << ","
-	//			<< vec[i].z << "}" << std::endl;
-	//	}
-	//}
-
-	//{
-	//	CF::EGG::vect<AfterMath::vec3> vec = CF::EGG::vect<AfterMath::vec3>();
-	//	for (uint32 i = 0; i < 5; i++)
-	//	{
-	//		vec.pushback(AfterMath::vec3(i, i + 1, i + 2));
-	//	}
-
-	//	for (uint32 i = 0; i < 5; i++)
-	//	{
-	//		vec.insertafter(3, AfterMath::vec3(-1,-1,-1));
-	//	}
-
-	//	vec.removeback();
-
-	//	for (uint32 i = 0; i < vec.size(); i++)
-	//	{
-	//		std::cout << "vec[" << i << "] = {"
-	//			<< vec[i].x << ","
-	//			<< vec[i].y << ","
-	//			<< vec[i].z << "}" << std::endl;
-	//	}
-
-	//	auto little_vec = CF::EGG::vect<AfterMath::vec3>();
-
-	//	for (uint32 i = 0; i < 5; i++)
-	//	{
-	//		little_vec.pushback(AfterMath::vec3(i,i,i));
-	//	}
-
-	//	auto vec2 = vec + little_vec;
-
-	//	//for (uint32 i = 0; i < vec2.size(); i++)
-	//	uint32 i(0), midpt(0);
-	//	while (vec2.size() > 0)
-	//	{
-	//		midpt = vec2.size() / 2;
-	//		std::cout << "vec2[" << midpt << "] = {"
-	//			<< vec2[midpt].x << ","
-	//			<< vec2[midpt].y << ","
-	//			<< vec2[midpt].z << "}" << std::endl;
-	//		vec2.remove(midpt);
-	//		i++;
-	//	}
-	//	int x = 0;
-	//}
+		//for (uint32 i = 0; i < vec2.size(); i++)
+		uint32 i(0), midpt(0);
+		while (vec2.size() > 0)
+		{
+			midpt = vec2.size() / 2;
+			std::cout << "vec2[" << midpt << "] = {"
+				<< vec2[midpt].x << ","
+				<< vec2[midpt].y << ","
+				<< vec2[midpt].z << "}" << std::endl;
+			vec2.remove(midpt);
+			i++;
+		}
+		int x = 0;
+	}
 
 	system("pause");
 	_CrtDumpMemoryLeaks();
