@@ -7,13 +7,13 @@ namespace CF
 namespace EGG
 {
 	template <typename T>
-	class bi_tree
+	class bintree
 	{
 	public:
-		bi_tree<T>();
-		bi_tree<T>(const bi_tree<T>&)
-		~bi_tree<T>();
-		bi_tree<T>& operator=(const bi_tree<T>&);
+		bintree<T>();
+		bintree<T>(const bintree<T>&)
+		~bintree<T>();
+		bintree<T>& operator=(const bintree<T>&);
 
 		// getters
 		unsigned int size() const;

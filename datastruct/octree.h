@@ -8,7 +8,7 @@ namespace CF
 namespace EGG
 {
 	template <typename T>
-	class oct_tree
+	class octree
 	{
 	public:
 
