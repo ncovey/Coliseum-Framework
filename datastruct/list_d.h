@@ -88,3 +88,8 @@ CF::EGG::list_d<T>::list_d(const list_d<T>& ld)
 
 }
 
+template<typename T>
+CF::EGG::list_d<T>::~list_d()
+{
+
+}

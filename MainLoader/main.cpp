@@ -28,41 +28,50 @@ int main()
 {
 	{
 		std::cout << "sizeof(list_d) = " << sizeof(EGG::list_d<uint32>) << std::endl;
+
+		EGG::list_d<int> l_ints = EGG::list_d<int>();
+		EGG::list_d<vec3> l_vecs = EGG::list_d<vec3>();
+
 		std::cout << "sizeof(mat3) = " << sizeof(mat3) << std::endl;
 
-		//mat3 mtx = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+		float matrix3[3][3] = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
 
-		//mat3 mtx = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-		//mat3 mtx2 = { { 4, 5, 6 }, { 7, 8, 9 }, { 10, 11, 12 } };
+		mat3 mtx = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
 
-		//mtx2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-		//mtx = mat3({ 0, 0, 0 }, { 1, 1, 1 }, { 2, 2, 2 });
+		mtx = mat3({ { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } });
+		mat3 mtx2 = { { 4, 5, 6 }, { 7, 8, 9 }, { 10, 11, 12 } };
 
-		//mtx *= mtx2;
+		mtx2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		mtx = mat3({ 0, 0, 0 }, { 1, 1, 1 }, { 2, 2, 2 });
+		mtx = { { 0, 0, 0 }, { 1, 1, 1 }, { 2, 2, 2 } };
 
-		//mtx + mtx2;
-		//mtx - mtx2;
-		//mtx * mtx2;
+		mtx *= mtx2;
 
-		//vec3 v = { 1, 1, 1 };
-		//vec3 v3 = { 2, 4, 6 };
-		//v = { 0, 0, 0 };
+		mtx + mtx2;
+		mtx - mtx2;
+		mtx * mtx2;
 
-		//vec3 v2 = v * mtx2;
-		//v2 = v + v3;
+		vec3 v = { 1, 1, 1 };
+		vec3 v3 = { 2, 4, 6 };
+		v = { 0, 0, 0 };
 
-		//vec3 v4 = v2 * mtx2;
+		vec3 v2 = v * mtx2;
+		v2 = v + v3;
+
+		vec3 v4 = v2 * mtx2;
+
+		EGG::vect<uint32> vint = 
 	}
 
 
-	//int32 a(3), b(-7);
-	//std::cout << "3^(-7) = " << fpow(3, -7) << std::endl;
-	//std::cout << "1.28347 ^ 25.323489 = " << fpow(1.28347 , 25.323489) << std::endl;
-	//std::cout << "155 ^ -1/2 = " << frsqrt(155) << std::endl;
-	//std::cout << "sqrt 144 = " << fsqrt(144) << std::endl;
-	//std::cout << "ln (345454656565) = " << fln(345454656565) << std::endl;
-	//std::cout << "size of vec3 : " << sizeof(vec3) << std::endl;
-	//printf("3^7=%d", pow(3, 7));
+	int32 a(3), b(-7);
+	std::cout << "3^(-7) = " << fpow(3, -7) << std::endl;
+	std::cout << "1.28347 ^ 25.323489 = " << fpow(1.28347 , 25.323489) << std::endl;
+	std::cout << "155 ^ -1/2 = " << frsqrt(155) << std::endl;
+	std::cout << "sqrt 144 = " << fsqrt(144) << std::endl;
+	std::cout << "ln (345454656565) = " << fln(345454656565) << std::endl;
+	std::cout << "size of vec3 : " << sizeof(vec3) << std::endl;
+	printf("3^7=%d", pow(3, 7));
 
 	//{
 	//	//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
