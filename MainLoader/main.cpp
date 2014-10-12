@@ -60,7 +60,7 @@ int main()
 
 		vec3 v4 = v2 * mtx2;
 
-		EGG::vect<uint32> vint = 
+		//EGG::vect<uint32> vint = 
 	}
 
 
@@ -71,7 +71,7 @@ int main()
 	std::cout << "sqrt 144 = " << fsqrt(144) << std::endl;
 	std::cout << "ln (345454656565) = " << fln(345454656565) << std::endl;
 	std::cout << "size of vec3 : " << sizeof(vec3) << std::endl;
-	printf("3^7=%d", pow(3, 7));
+	printf("3^7=%d\n", pow(3, 7));
 
 	//{
 	//	//CF::Egg::vect<CF::uint32> vec = CF::Egg::vect<CF::uint32>();
