@@ -10,60 +10,92 @@ namespace CF
 namespace AfterMath
 {
 
+//	needed for multiplication
+extern class mat3;
+
 struct vec3
 {
 	// data members
-	CF::real32 x, y, z;
+	real32 x, y, z;
 
-	// ctors
+	//////////////////////////////////////////////////////////////////////////
+	//	constructor(s)/destructor
+
+	//	default ctor
 	vec3();
-	vec3(CF::real32 X, CF::real32 Y, CF::real32 Z);
+	//	copy ctor
 	vec3(const vec3& v);
+	//	initialize vector with values
+	vec3(real32 X, real32 Y, real32 Z);
+	//	use a c-style array to create the vector
+	vec3(const real32 (&v)[3]);
 	// dtor
 	~vec3();
 
-	// assignment operator
-	vec3& operator=(const vec3& v);
-	// cross product
-	vec3& operator%=(const vec3& v);
-	// scalar mult
-	vec3& operator*=(CF::real32 s);
-	// scalar divide
-	vec3& operator/=(CF::real32 s);
-	// add
-	vec3& operator+=(const vec3& v);
-	// subtract
-	vec3& operator-=(const vec3& v);
+	//////////////////////////////////////////////////////////////////////////
+	//		operator overloads
 
-	// manipulators
-	CF::real32 getLengthSquared() const;
-	CF::real32 getLength() const;
+	//	assignment operator
+	vec3& operator=(const vec3& v);
+
+	//////////////////////////////////////////////////////////////////////////
+	//	arithmetic operators
+
+	// cross product
+	vec3& operator%=(const vec3&);
+	//	vector * matrix multiplication
+	vec3& operator*=(const mat3&);
+	//	scalar mult
+	vec3& operator*=(real32);
+	//	scalar divide
+	vec3& operator/=(real32);
+	//	add
+	vec3& operator+=(const vec3&);
+	//	subtract
+	vec3& operator-=(const vec3&);
+	
+	//////////////////////////////////////////////////////////////////////////
+	//	manipulators
+
+	//	returns the length of the vector without taking the square root of it
+	real32 getLengthSquared() const;
+	//	returns the length of the vector
+	real32 getLength() const;
+	//	normalizes the vector to a length of 1.0f
 	vec3& normalize();
+	//	returns a vector with a length of 1.0f
 	vec3 getNormalized() const;
 };	
 
 //////////////////////////////////////////////////////////////////////////
 //	inlines
 
-// not sure if I need the 'extern' keyword...
+//	comparison
+inline bool operator==(const vec3& lhs, const vec3& rhs)
+{
+	return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
+}
 
-// comparison
-extern inline bool operator==(const vec3& lhs, const vec3& rhs);
+//	cross product
+inline vec3 operator%(vec3 lhs, const vec3& rhs) { return lhs %= rhs; }
 
-// cross product
-extern inline vec3& operator%(vec3 lhs, const vec3& rhs);
+//	dot product
+inline real32 operator*(const vec3& lhs, const vec3& rhs)
+{
+	return lhs.x*rhs.x + lhs.y*rhs.y + lhs.z*rhs.z;
+}
 
-// dot product
-extern inline CF::real32 operator*(vec3 lhs, const vec3& rhs);
+//	scalar product
+inline vec3 operator*(vec3 lhs, real32 rhs) { return lhs *= rhs; }
+inline vec3 operator*(real32 rhs, vec3 lhs) { return lhs *= rhs; }
+inline vec3 operator/(vec3 lhs, real32 rhs) { return lhs /= rhs; }
 
-// scalar product
-extern inline vec3& operator*(vec3 lhs, float rhs);
-extern inline vec3& operator*(CF::real32 rhs, vec3 lhs);
-extern inline vec3& operator/(vec3 lhs, float rhs);
+//	add/subtract
+inline vec3 operator+(vec3 lhs, const vec3& rhs) { return lhs += rhs; }
+inline vec3 operator-(vec3 lhs, const vec3& rhs) { return lhs -= rhs; }
 
-// add/subtract
-extern inline vec3& operator+(vec3 lhs, const vec3& rhs);
-extern inline vec3& operator-(vec3 lhs, const vec3& rhs);
+//	vector * matrix multiplication
+inline vec3 operator*(vec3 lhs, const mat3& rhs) { return lhs *= rhs; }
 
 }
 

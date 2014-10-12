@@ -61,3 +61,30 @@ namespace EGG
 }
 
 }
+
+//////////////////////////////////////////////////////////////////////////
+//	Doubly-Linked List Implementation
+
+//////////////////////////////////////////////////////////////////////////
+//	ctor
+
+// default ctor
+template<typename T>
+CF::EGG::list_d<T>::list_d()
+	: m_size(0)
+	, m_end(nullptr)
+	, m_Data(nullptr)
+{
+
+}
+
+// copy ctor
+template<typename T>
+CF::EGG::list_d<T>::list_d(const list_d<T>& ld)
+	: m_size(ld.m_size)
+	, m_end(ld.m_end)
+	, m_Data(ld.m_Data)
+{
+
+}
+

@@ -126,11 +126,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="bi_tree.h" />
+    <ClInclude Include="bintree.h" />
     <ClInclude Include="heap.h" />
     <ClInclude Include="list_d.h" />
     <ClInclude Include="list_s.h" />
-    <ClInclude Include="oct_tree.h" />
+    <ClInclude Include="octree.h" />
     <ClInclude Include="pr_queue.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="str.h" />

@@ -1,6 +1,7 @@
 // 3D vector
 
 #include "vec3.h"
+#include "mat3.h"
 #include "fastmath.h"
 
 using namespace CF;
@@ -8,11 +9,34 @@ using namespace AfterMath;
 
 //////////////////////////////////////////////////////////////////////////
 // ctors
-vec3::vec3() : x(0.0f), y(0.0f), z(0.0f) {}
-vec3::vec3(CF::real32 X, CF::real32 Y, CF::real32 Z) : x(X), y(Y), z(Z) {}
+
+//	initializes vector with default values of 0
+vec3::vec3() 
+	: x(0.0f), y(0.0f), z(0.0f) 
+{
+
+}
 
 // copy ctor
-vec3::vec3(const vec3& v) : x(v.x), y(v.y), z(v.z) {}
+vec3::vec3(const vec3& v) 
+	: x(v.x), y(v.y), z(v.z) 
+{
+
+}
+
+//	initialize vector with values
+vec3::vec3(real32 X, real32 Y, real32 Z) 
+	: x(X), y(Y), z(Z) 
+{
+
+}
+
+//	initialize with c-style array
+vec3::vec3(const real32(&v)[3])
+	: x(v[0]), y(v[1]), z(v[2])
+{
+	
+}
 
 //////////////////////////////////////////////////////////////////////////
 // dtor
@@ -38,15 +62,26 @@ vec3& vec3::operator%=(const vec3& v)
 
 //////////////////////////////////////////////////////////////////////////
 // scalar mult
-vec3& vec3::operator*=(CF::real32 s)
+vec3& vec3::operator*=(real32 s)
 {
 	x *= s; y *= s; z *= s;
 	return *this;
 }
 
 //////////////////////////////////////////////////////////////////////////
+//	vector * matrix multiplication
+vec3& vec3::operator*=(const mat3& m)
+{
+	x *= (m[0][0] + m[1][0] + m[2][0]);
+	y *= (m[0][1] + m[1][1] + m[2][1]);
+	z *= (m[0][2] + m[1][2] + m[2][2]);
+
+	return *this;
+}
+
+//////////////////////////////////////////////////////////////////////////
 // scalar divide
-vec3& vec3::operator/=(CF::real32 s)
+vec3& vec3::operator/=(real32 s)
 {
 	x /= s; y /= s; z /= s;
 	return *this;
@@ -73,14 +108,14 @@ vec3& vec3::operator-=(const vec3& v)
 
 //////////////////////////////////////////////////////////////////////////
 // if obtaining square root is not necessary
-CF::real32 vec3::getLengthSquared() const
+real32 vec3::getLengthSquared() const
 {
 	return x*x + y*y + z*z;
 }
 
 //////////////////////////////////////////////////////////////////////////
 // actual length
-CF::real32 vec3::getLength() const
+real32 vec3::getLength() const
 {
 	return fsqrt(x*x + y*y + z*z);
 }
@@ -100,32 +135,3 @@ vec3 vec3::getNormalized() const
 	vec3 v(*this);
 	return v.normalize();
 }
-
-// *************** End vec3 class definitions ***************
-
-// inlines
-
-inline bool operator==(const vec3& lhs, const vec3& rhs)
-{
-	return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
-}
-
-inline vec3& operator%(vec3 lhs, const vec3& rhs)
-{
-	return lhs%=rhs;
-}
-
-// dot product
-inline CF::real32 operator*(const vec3& lhs, const vec3& rhs)
-{
-	return lhs.x*rhs.x + lhs.y*rhs.y + lhs.z*rhs.z;
-}
-
-// scalar product
-inline vec3& operator*(vec3 lhs, CF::real32 rhs) { return lhs *= rhs; }
-inline vec3& operator*(CF::real32 rhs, vec3 lhs) { return lhs *= rhs; }
-inline vec3& operator/(vec3 lhs, CF::real32 rhs) { return lhs /= rhs; }
-
-// add/subtract
-inline vec3& operator+(vec3 lhs, const vec3& rhs) { return lhs += rhs; }
-inline vec3& operator-(vec3 lhs, const vec3& rhs) { return lhs -= rhs; }
