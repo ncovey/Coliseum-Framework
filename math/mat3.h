@@ -25,10 +25,10 @@ namespace AfterMath
 		//{
 		//	real32 _0, _1, _2;
 		//};
-		//struct __matrix3x3
-		//{
-		//	real32 _0[3], _1[3], _2[3];
-		//};
+		struct __matrix3x3
+		{
+			real32 _0[3], _1[3], _2[3];
+		};
 
 	public:
 
@@ -41,7 +41,7 @@ namespace AfterMath
 		//mat3(const real32 (&a)[9]);
 		//mat3(const __matrix1x9&);
 		//mat3(const __matrix1x3&, const __matrix1x3&, const __matrix1x3&);
-		//mat3(const __matrix3x3&);
+		mat3(const __matrix3x3&);
 		~mat3();
 
 		//////////////////////////////////////////////////////////////////////////
