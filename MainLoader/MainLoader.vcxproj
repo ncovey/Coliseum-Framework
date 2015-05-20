@@ -102,6 +102,7 @@
     <Link>
       <AdditionalDependencies>..\libs\$(Platform)\$(Configuration)\*;..\*\;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -111,6 +112,7 @@
     <Link>
       <AdditionalDependencies>..\libs\$(Platform)\$(Configuration)\*;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

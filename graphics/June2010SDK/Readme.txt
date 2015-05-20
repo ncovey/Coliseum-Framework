@@ -1,0 +1,1 @@
+With the new Windows 8.0/8.1 SDKs, the usual June 2010 Direct X SDK is now deprecated. I have moved the include files and libs here so it does not conflict with the dev environment. Therefore, the $(DXSDK_DIR) environment variable won't work, as it will be pointing to X:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\
