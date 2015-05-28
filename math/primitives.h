@@ -22,6 +22,11 @@ namespace CF
 	typedef					double		real64;
 
 	typedef		unsigned	char		char8;
+
+	typedef		uint32					index_t;
+	typedef		uint32					sz_t;	// size
+
+
 	//typedef					bool		boolean;
 
 }

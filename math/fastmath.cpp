@@ -3,6 +3,7 @@
 #include "primitives.h"
 #include "constants.h"
 #include "fastmath.h"
+#include <xmmintrin.h>
 
 using namespace CF;
 using namespace AfterMath;
@@ -62,7 +63,11 @@ AfterMath::fpow(real64 base, real64 power)
 real32 
 AfterMath::fsqrt(real32 value)
 {
-	return 1 / AfterMath::frsqrt(value);
+	__m128 in = _mm_load_ss(&value);
+	real32* pOut;
+	_mm_store_ss(pOut, _mm_mul_ss(in, _mm_rsqrt_ss(in)));
+	return *pOut;
+	//return 1 / AfterMath::frsqrt(value);
 }
 
 //	fast inverse (reverse) square root
@@ -71,16 +76,16 @@ AfterMath::frsqrt(real32 value)
 {
 	//	famous Carmack version:
 	int64 i;
-	real32 x2, y;
-	const real32 threehalfs = 1.5F;
+	real64 x2, y;
+	const real64 threehalfs = 1.5F;
 
 	x2 = value * 0.5F;
 	y = value;
 	i = *(int64 *)&y;					// evil floating point bit level hacking
-	i = 0x5f3759df - (i >> 1);          // what the fuck?
-	y = *(real32 *)&i;
+	i = 0x5f3759df - (i >> 1);          // what the f**k?
+	y = *(real64 *)&i;
 	y *= (threehalfs - (x2 * y * y));   // 1st iteration
-	y *= (threehalfs - (x2 * y * y));   // 2nd iteration, this can be removed
+	//y *= (threehalfs - (x2 * y * y));   // 2nd iteration, this can be removed
 	return y;
 }
 

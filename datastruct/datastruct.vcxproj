@@ -127,7 +127,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bintree.h" />
+    <ClInclude Include="container.h" />
     <ClInclude Include="heap.h" />
+    <ClInclude Include="iter.h" />
     <ClInclude Include="list_d.h" />
     <ClInclude Include="list_s.h" />
     <ClInclude Include="octree.h" />
@@ -135,6 +137,7 @@
     <ClInclude Include="stack.h" />
     <ClInclude Include="str.h" />
     <ClInclude Include="vect.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="str.cpp" />
