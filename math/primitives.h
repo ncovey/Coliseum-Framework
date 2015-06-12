@@ -23,9 +23,9 @@ namespace CF
 
 	typedef		unsigned	char		char8;
 
-	typedef		uint32					index_t;
 	typedef		uint32					sz_t;	// size
-
+	
+	typedef		void*					v_ptr;
 
 	//typedef					bool		boolean;
 

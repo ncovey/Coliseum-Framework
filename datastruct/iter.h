@@ -22,5 +22,71 @@ namespace EGG
 	/******************************************************************************/
 
 
+	//////////////////////////////////////////////////////////////////////////
+	//	iterator class:
+	template< typename value_type>
+	class __itr
+	{
+	public:
+		__itr();
+		~__itr();
+
+		// copy ctor
+		__itr(const __itr&);
+
+		// assignment:
+		__itr& operator=(const __itr&);
+
+		// comparison:
+		virtual bool operator==(const __itr&) const;
+		virtual bool operator!=(const __itr&) const;
+
+		// increment
+		virtual __itr& operator++();
+		// decrement
+		virtual __itr& operator--();
+
+		virtual const value_type& operator*() const;
+		virtual value_type& operator*() const;
+		virtual const value_type* operator->() const;
+		virtual value_type* operator->() const;
+
+	private:
+		value_type *m_ptr;
+		void swap(__itr& lhs, __itr& rhs);
+
+	}; // end class iter
+
+	//////////////////////////////////////////////////////////////////////////
+	//	const iterator
+	template< typename value_type>
+	class __const_itr
+	{
+	public:
+		__const_itr();
+		__const_itr(const __const_itr&);
+		__const_itr(const __itr&);
+		~__const_itr();
+
+		// assignment:
+		virtual __const_itr& operator=(__const_itr&);
+
+		// comparison:
+		virtual bool operator==(__const_itr&) const;
+		virtual bool operator!=(__const_itr&) const;
+
+		// increment
+		virtual __const_itr& operator++();
+		// decrement
+		virtual __const_itr& operator--();
+
+		virtual const value_type& operator*() const;
+		virtual const value_type* operator->() const;
+
+	private:
+		value_type *m_ptr;
+		void swap(__const_itr& lhs, __const_itr& rhs);
+	};
+
 } // end namespace EGG
 } // end namespace CF

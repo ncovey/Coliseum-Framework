@@ -64,9 +64,9 @@ real32
 AfterMath::fsqrt(real32 value)
 {
 	__m128 in = _mm_load_ss(&value);
-	real32* pOut;
-	_mm_store_ss(pOut, _mm_mul_ss(in, _mm_rsqrt_ss(in)));
-	return *pOut;
+	real32 pOut (0.0f);
+	_mm_store_ss(&pOut, _mm_mul_ss(in, _mm_rsqrt_ss(in)));
+	return pOut;
 	//return 1 / AfterMath::frsqrt(value);
 }
 

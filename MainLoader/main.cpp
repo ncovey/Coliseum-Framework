@@ -32,14 +32,10 @@ using namespace AfterMath;
 int main()
 {
 	{
-		const real32 testVal = 43.0f;
-		real32 *value = new real32();
-		*value = testVal;
-		__m128 in = _mm_load_ss(value);
-		real32 *pOut = new real32();
-		_mm_store_ss(pOut, _mm_mul_ss(in, _mm_rsqrt_ss(in)));
+		const real64 testVal = 43.0f;
+
 		//return *pOut;
-		printf("%f\n", *pOut);
+		printf("%f\n", frsqrt(testVal));
 
 		//EGG::vector<uint32> v = EGG::vector<uint32>();
 		printf("%f\n", fsqrt(testVal));
