@@ -44,8 +44,8 @@ namespace EGG
 		//	Methods:
 
 		//	access:
-		virtual const T&	at(const index_t) const;
-		virtual T&			at(const index_t);
+		virtual const T&	at(const sz_t) const;
+		virtual T&			at(const sz_t);
 
 		virtual const T&	front() const;
 		virtual T&			front();
@@ -97,15 +97,15 @@ namespace EGG
 		// inserts num_items before the position, initialized to value
 		virtual void		insert(__const_itr& position, uint32 num_items, const T& value);
 		
-		virtual void		insert(index_t index, const T& value);
-		virtual void		insert(index_t index, T&& value);
-		virtual void		insert(index_t index, uint32 num_items, const T& value);
+		virtual void		insert(sz_t index, const T& value);
+		virtual void		insert(sz_t index, T&& value);
+		virtual void		insert(sz_t index, uint32 num_items, const T& value);
 
 		virtual void		erase(__const_itr&);
 		virtual void		erase(__const_itr& begin_at, __const_itr& end_at);
 
-		virtual void		erase(const index_t);
-		virtual void		erase(const index_t begin_at, const index_t end_at);
+		virtual void		erase(const sz_t);
+		virtual void		erase(const sz_t begin_at, const sz_t end_at);
 
 		//// The container is extended by inserting a new element at position. 
 		//// This new element is constructed in place using args as the arguments for its construction. 
