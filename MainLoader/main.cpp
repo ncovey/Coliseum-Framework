@@ -12,6 +12,7 @@
 #include "vec3.h"
 #include "mat3.h"
 #include "vect.h"
+#include "vector.h"
 #include "list_d.h"
 
 //#include "vector.h"
@@ -39,6 +40,9 @@ int main()
 
 		//EGG::vector<uint32> v = EGG::vector<uint32>();
 		printf("%f\n", fsqrt(testVal));
+
+		EGG::vector<uint32> vInts = EGG::vector<uint32>();
+
 	}
 
 	system("pause");

@@ -25,6 +25,11 @@ namespace EGG
 
 		vector<T>(const vector<T>& v);
 
+		vector<T>&			operator=(const vector<T>&);
+		const vector<T>		operator+=(const vector<T>&);
+		vector<T>&			operator+=(vector<T>&&);
+		
+
 		class iter : public __itr<T>
 		{};
 
@@ -118,26 +123,26 @@ CF::EGG::vector<T>::operator=(const CF::EGG::vector<T>& v)
 	return *this;
 }
 
-template <typename T>
-bool
-CF::EGG::vector<T>::operator==(const CF::EGG::vector<T>& v)
-{
-	if (size() != v.size())
-		return false;
-
-	for (sz_t i = 0; i < size(); ++i)
-		if ((*this)[i] != v[i])
-			return false;
-
-	return true;
-}
-
-template <typename T>
-bool
-CF::EGG::vector<T>::operator!=(const CF::EGG::vector<T>& v)
-{
-	return !(*this == v)
-}
+//template <typename T>
+//bool
+//CF::EGG::vector<T>::operator==(const CF::EGG::vector<T>& v)
+//{
+//	if (size() != v.size())
+//		return false;
+//
+//	for (sz_t i = 0; i < size(); ++i)
+//		if ((*this)[i] != v[i])
+//			return false;
+//
+//	return true;
+//}
+//
+//template <typename T>
+//bool
+//CF::EGG::vector<T>::operator!=(const CF::EGG::vector<T>& v)
+//{
+//	return !(*this == v)
+//}
 
 // appends the new element at the end
 template <typename T>
@@ -157,27 +162,27 @@ CF::EGG::vector<T>::operator+=(T&& new_elmt)
 }
 
 // concatenates another CF::EGG::vector at the end of this one
-template <typename T>
-const CF::EGG::vector<T>&
-CF::EGG::vector<T>::operator+=(const CF::EGG::vector<T>& v)
-{
-	sz_t old_size = size() - 1;
-	resize(size() + v.size(), T());
-	for (sz_t i = 0; i < v.size(); ++i)
-	{
-		(*this)[old_size + i] = v[i];
-	}
-	return *this;
-}
-
-template <typename T>
-CF::EGG::vector<T>&
-CF::EGG::vector<T>::operator+=(CF::EGG::vector<T>&& v)
-{
-	return const_cast<CF::EGG::vector<T>&>(
-		static_cast<CF::EGG::vector<T>&>(*this) += v);
-	return *this;
-}
+//template <typename T>
+//const CF::EGG::vector<T>&
+//CF::EGG::vector<T>::operator+=(const CF::EGG::vector<T>& v)
+//{
+//	sz_t old_size = size() - 1;
+//	resize(size() + v.size(), T());
+//	for (sz_t i = 0; i < v.size(); ++i)
+//	{
+//		(*this)[old_size + i] = v[i];
+//	}
+//	return *this;
+//}
+//
+//template <typename T>
+//CF::EGG::vector<T>&
+//CF::EGG::vector<T>::operator+=(CF::EGG::vector<T>&& v)
+//{
+//	return const_cast<CF::EGG::vector<T>&>(
+//		static_cast<CF::EGG::vector<T>&>(*this) += v);
+//	return *this;
+//}
 
 template <typename T>
 const T&
@@ -248,7 +253,7 @@ template <typename T>
 void
 CF::EGG::vector<T>::pop_back()
 {
-
+	(*this)[size() - 1]::~T();
 }
 
 template <typename T>
@@ -321,14 +326,14 @@ template <typename T>
 sz_t
 CF::EGG::vector<T>::size() const
 {
-
+	return num_elmts;
 }
 
 template <typename T>
 bool
 CF::EGG::vector<T>::empty() const
 {
-
+	return num_elmts != 0;
 }
 
 // returns an iter to the first instance, otherwise returns ::end()

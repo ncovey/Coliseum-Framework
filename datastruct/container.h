@@ -5,6 +5,7 @@
 #pragma once
 
 #include "iter.h"
+#include "primitives.h"
 
 namespace CF
 {
@@ -30,15 +31,15 @@ namespace EGG
 		virtual T&					operator[](const uint32 idx);
 
 		// assignment
-		virtual container<T>&		operator=(const container<T>&);
-		virtual bool				operator==(const container<T>&);
-		virtual bool				operator!=(const container<T>&);
+		//virtual container<T>&		operator=(const container<T>&);
+		//virtual bool				operator==(const container<T>&);
+		//virtual bool				operator!=(const container<T>&);
 		// appends the new element at the end
 		virtual const T&			operator+=(const T&);
 		virtual T&					operator+=(T&&);
-		// concatenates another container at the end of this one
-		virtual const container<T>&	operator+=(const container<T>&);
-		virtual container<T>&		operator+=(container<T>&&);
+		//// concatenates another container at the end of this one
+		//virtual const container<T>&	operator+=(const container<T>&);
+		//virtual container<T>&		operator+=(container<T>&&);
 
 		//////////////////////////////////////////////////////////////////////////
 		//	Methods:
@@ -123,8 +124,8 @@ namespace EGG
 		void				swap(const container<T>&);
 
 		protected:
-			friend class __itr;
-			friend class __const_itr;
+			friend class __itr<T>;
+			friend class __const_itr<T>;
 	};
 
 	template <typename T>
