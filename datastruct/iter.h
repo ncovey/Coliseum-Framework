@@ -51,7 +51,7 @@ namespace EGG
 		virtual const value_type* operator->() const;
 		virtual value_type* operator->() const;
 
-	private:
+	protected:
 		value_type *m_ptr;
 		void swap(__itr& lhs, __itr& rhs);
 
@@ -83,7 +83,7 @@ namespace EGG
 		virtual const value_type& operator*() const;
 		virtual const value_type* operator->() const;
 
-	private:
+	protected:
 		value_type *m_ptr;
 		void swap(__const_itr& lhs, __const_itr& rhs);
 	};

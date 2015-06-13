@@ -1,6 +1,6 @@
 // fast math .cpp
 
-#include "primitives.h"
+#include "types.h"
 #include "constants.h"
 #include "fastmath.h"
 #include <xmmintrin.h>

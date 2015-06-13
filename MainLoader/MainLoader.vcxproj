@@ -73,7 +73,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\math\;$(SolutionDir)\graphics\;$(SolutionDir)\common\Header;$(SolutionDir)\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -88,7 +88,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\math\;$(SolutionDir)\graphics\;$(SolutionDir)\common\Header;$(SolutionDir)\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -105,7 +105,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\math\;$(SolutionDir)\graphics\;$(SolutionDir)\common\Header;$(SolutionDir)\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -115,7 +115,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\math\;..\graphics\;..\common\;..\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\math\;$(SolutionDir)\graphics\;$(SolutionDir)\common\Header;$(SolutionDir)\datastruct\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
