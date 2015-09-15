@@ -33,15 +33,16 @@ using namespace AfterMath;
 int main()
 {
 	{
-		const real64 testVal = 43.0f;
+		//const real64 testVal = 43.0f;
 
-		//return *pOut;
-		printf("%f\n", frsqrt(testVal));
+		////return *pOut;
+		//printf("%f\n", frsqrt(testVal));
 
-		//EGG::vector<uint32> v = EGG::vector<uint32>();
-		printf("%f\n", fsqrt(testVal));
+		////EGG::vector<uint32> v = EGG::vector<uint32>();
+		//printf("%f\n", fsqrt(testVal));
 
-		EGG::vector<uint32> vInts = EGG::vector<uint32>();
+		//EGG::vector<uint32> vInts = EGG::vector<uint32>();
+		EGG::vector<uint32>::iter itr;
 
 	}
 

@@ -4,8 +4,8 @@
 
 #pragma once
 
+#include "types.h"
 #include "iter.h"
-#include "primitives.h"
 
 namespace CF
 {
@@ -14,10 +14,16 @@ namespace EGG
 	//////////////////////////////////////////////////////////////////////////
 	//	Declaration:
 
-	template<typename T>
+	template < typename T >
 	class container
 	{
+	protected:
+
+		typedef __const_itr	< T >	const_iter;
+		typedef __itr < T >			iter;
+
 	public:
+
 		//container<T>();
 		//~container<T>();
 
@@ -31,12 +37,12 @@ namespace EGG
 		virtual T&					operator[](const uint32 idx);
 
 		// assignment
-		//virtual container<T>&		operator=(const container<T>&);
+		//virtual container_type&		operator=(const container_type&)
 		//virtual bool				operator==(const container<T>&);
 		//virtual bool				operator!=(const container<T>&);
 		// appends the new element at the end
-		virtual const T&			operator+=(const T&);
-		virtual T&					operator+=(T&&);
+		//virtual const T&			operator+=(const T&);
+		//virtual T&					operator+=(T&&);
 		//// concatenates another container at the end of this one
 		//virtual const container<T>&	operator+=(const container<T>&);
 		//virtual container<T>&		operator+=(container<T>&&);
@@ -75,35 +81,34 @@ namespace EGG
 		virtual void		shrink_to_fit();
 
 		// getters:
-		virtual sz_t		size() const;
-		//virtual sz_t		max_size() const;
-		virtual bool		empty() const;	// in keeping with the standard
+		virtual sz_t&		size() const;
+		virtual bool		empty() const;
 
 		// returns an iter to the first instance, otherwise returns ::end()
-		virtual __const_itr	find(const T&) const;
+		virtual const_iter	find(const T&) const;
 		// returns an iter to the first instance, otherwise returns ::end()
-		virtual __itr		find(const T&);
+		virtual iter		find(const T&);
 
 		//////////////////////////////////////////////////////////////////////////
 		//	Iterator Implementation:
 
-		virtual __const_itr	begin() const;
-		virtual __itr		begin();
-		virtual __const_itr	end() const;
-		virtual __itr		end();
+		virtual const_iter	begin() const;
+		virtual iter		begin();
+		virtual const_iter	end() const;
+		virtual iter		end();
 
 		// inserts new elements before the specified position
-		virtual void		insert(__const_itr& position, const T& value);
-		virtual void		insert(__const_itr& position, T&& value);
+		virtual void		insert(const_iter& position, const T& value);
+		virtual void		insert(const_iter& position, T&& value);
 		// inserts num_items before the position, initialized to value
-		virtual void		insert(__const_itr& position, uint32 num_items, const T& value);
+		virtual void		insert(const_iter& position, uint32 num_items, const T& value);
 		
 		virtual void		insert(sz_t index, const T& value);
 		virtual void		insert(sz_t index, T&& value);
 		virtual void		insert(sz_t index, uint32 num_items, const T& value);
 
-		virtual void		erase(__const_itr&);
-		virtual void		erase(__const_itr& begin_at, __const_itr& end_at);
+		virtual void		erase(const_iter&);
+		virtual void		erase(const_iter& begin_at, const_iter& end_at);
 
 		virtual void		erase(const sz_t);
 		virtual void		erase(const sz_t begin_at, const sz_t end_at);
@@ -121,14 +126,11 @@ namespace EGG
 		// replaces the contents of the container with num_items all assigned to value
 		virtual void		assign(uint32 num_items, const T& value);
 
-		void				swap(const container<T>&);
+		//void				swap(const container_type&);
 
-		protected:
-			friend class __itr<T>;
-			friend class __const_itr<T>;
 	};
 
-	template <typename T>
-	void swap(container<T>& lhs, container<T>& rhs);
+	//template <typename T>
+	//void swap(container<T>& lhs, container<T>& rhs);
 }
 }

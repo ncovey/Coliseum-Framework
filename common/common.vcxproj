@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Header\dummy.h" />
     <ClInclude Include="Header\precompiled_header.h" />
+    <ClInclude Include="Header\types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\dummy.cpp" />
