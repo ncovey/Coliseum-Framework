@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "__tree.h"
+
 namespace CF
 {
 namespace EGG
@@ -9,9 +11,10 @@ namespace EGG
 	template <typename T>
 	class bintree
 	{
+
 	public:
 		bintree<T>();
-		bintree<T>(const bintree<T>&)
+		bintree<T>(const bintree<T>&);
 		~bintree<T>();
 		bintree<T>& operator=(const bintree<T>&);
 
@@ -22,18 +25,14 @@ namespace EGG
 
 	private:
 		// child node struct
-		struct child
-		{
-			child<T>();
-			T m_data;
-			child<T> *m_left, *m_right;
-		};
+
+		T* m_pData;
+		__tree<T> *m_root;
 		// number of child elements in tree
 		unsigned int m_size;
-		// tree root
-		child<T> *m_root;
-	};
 
-}
+	};	// class bintree
 
-}
+};	//	namespace CF
+};	//	namespace EGG
+

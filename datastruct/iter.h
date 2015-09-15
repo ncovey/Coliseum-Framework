@@ -24,7 +24,7 @@ namespace EGG
 
 	//////////////////////////////////////////////////////////////////////////
 	//	iterator class:
-	template< typename value_type>
+	template< typename value_type >
 	class __itr
 	{
 	public:
@@ -35,7 +35,7 @@ namespace EGG
 		__itr(const __itr&);
 
 		// assignment:
-		__itr& operator=(const __itr&);
+		virtual __itr& operator=(const __itr&);
 
 		// comparison:
 		virtual bool operator==(const __itr&) const;
@@ -59,7 +59,7 @@ namespace EGG
 
 	//////////////////////////////////////////////////////////////////////////
 	//	const iterator
-	template< typename value_type>
+	template< typename value_type >
 	class __const_itr
 	{
 	public:

@@ -138,6 +138,7 @@
     <ClInclude Include="str.h" />
     <ClInclude Include="vect.h" />
     <ClInclude Include="vector.h" />
+    <ClInclude Include="__tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="str.cpp" />
