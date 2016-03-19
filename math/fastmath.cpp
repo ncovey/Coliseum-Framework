@@ -74,19 +74,20 @@ AfterMath::fsqrt(real32 value)
 real32 
 AfterMath::frsqrt(real32 value)
 {
-	//	famous Carmack version:
-	int64 i;
-	real64 x2, y;
-	const real64 threehalfs = 1.5F;
+	return (1 / fsqrt(value));
 
-	x2 = value * 0.5F;
-	y = value;
-	i = *(int64 *)&y;					// evil floating point bit level hacking
-	i = 0x5f3759df - (i >> 1);          // what the f**k?
-	y = *(real64 *)&i;
-	y *= (threehalfs - (x2 * y * y));   // 1st iteration
-	//y *= (threehalfs - (x2 * y * y));   // 2nd iteration, this can be removed
-	return y;
+	//int64 i;
+	//real64 x2, y;
+	//const real64 threehalfs = 1.5F;
+
+	//x2 = value * 0.5F;
+	//y = value;
+	//i = *(int64 *)&y;					// evil floating point bit level hacking
+	//i = 0x5f3759df - (i >> 1);          // what the f**k?
+	//y = *(real64 *)&i;
+	//y *= (threehalfs - (x2 * y * y));   // 1st iteration
+	////y *= (threehalfs - (x2 * y * y));   // 2nd iteration, this can be removed
+	//return y;
 }
 
 //////////////////////////////////////////////////////////////////////////

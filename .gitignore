@@ -21,6 +21,9 @@
 #################
 *.user
 *.suo
+*.VC.opendb
+*.iobj
+*.ipdb
 
 # Folders #
 ###########
