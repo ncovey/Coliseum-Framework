@@ -11,7 +11,7 @@ namespace AfterMath
 {
 
 //	needed for multiplication
-extern class mat3;
+extern class Matrix3x3;
 
 struct vec3
 {
@@ -44,7 +44,7 @@ struct vec3
 	// cross product
 	vec3& operator%=(const vec3&);
 	//	vector * matrix multiplication
-	vec3& operator*=(const mat3&);
+	vec3& operator*=(const Matrix3x3&);
 	//	scalar mult
 	vec3& operator*=(real32);
 	//	scalar divide
@@ -95,7 +95,7 @@ inline vec3 operator+(vec3 lhs, const vec3& rhs) { return lhs += rhs; }
 inline vec3 operator-(vec3 lhs, const vec3& rhs) { return lhs -= rhs; }
 
 //	vector * matrix multiplication
-inline vec3 operator*(vec3 lhs, const mat3& rhs) { return lhs *= rhs; }
+inline vec3 operator*(vec3 lhs, const Matrix3x3& rhs) { return lhs *= rhs; }
 
 }
 

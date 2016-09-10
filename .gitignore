@@ -24,6 +24,8 @@
 *.VC.opendb
 *.iobj
 *.ipdb
+*.psess
+*.vsp
 
 # Folders #
 ###########

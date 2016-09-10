@@ -24,6 +24,9 @@
   <ItemGroup>
     <None Include="shaders.shader" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="June2010SDK\Readme.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{27AFBDD8-3BE5-45AB-8E76-5AD81B23DD6C}</ProjectGuid>
     <RootNamespace>graphics</RootNamespace>

@@ -2,14 +2,14 @@
 //	mat3.cpp
 //////////////////////////////////////////////////////////////////////////
 
-#include "mat3.h"
+#include "Matrix3x3.h"
 
 using namespace CF;
 using namespace AfterMath;
 
 //////////////////////////////////////////////////////////////////////////
 //	default ctor
-mat3::mat3()
+Matrix3x3::Matrix3x3()
 {
 	m_matrix[0][0] =
 		m_matrix[0][1] =
@@ -24,14 +24,14 @@ mat3::mat3()
 
 //////////////////////////////////////////////////////////////////////////
 //	copy ctor
-mat3::mat3(const mat3& m)
+Matrix3x3::Matrix3x3(const mat3& m)
 {
 	*this = m;
 }
 
 //////////////////////////////////////////////////////////////////////////
 //
-mat3::mat3(const real32 (&row1)[3], const real32 (&row2)[3], const real32 (&row3)[3])
+Matrix3x3::Matrix3x3(const real64 (&row1)[3], const real64 (&row2)[3], const real64 (&row3)[3])
 {
 	m_matrix[0][0] = row1[0];
 	m_matrix[0][1] = row1[1];
@@ -46,7 +46,7 @@ mat3::mat3(const real32 (&row1)[3], const real32 (&row2)[3], const real32 (&row3
 
 //////////////////////////////////////////////////////////////////////////
 //	
-//mat3::mat3(const real32 (&a)[9])
+//mat3::mat3(const real64 (&a)[9])
 //{
 //	m_matrix[0][0] = a[0];
 //	m_matrix[0][1] = a[1];
@@ -100,7 +100,7 @@ mat3::mat3(const real32 (&row1)[3], const real32 (&row2)[3], const real32 (&row3
 
 //////////////////////////////////////////////////////////////////////////
 //	c-style matrix ctor
-mat3::mat3(const real32 (&m)[3][3])
+Matrix3x3::Matrix3x3(const real64 (&m)[3][3])
 {
 	//*this = m;
 	m_matrix[0][0] = m[0][0];
@@ -116,14 +116,14 @@ mat3::mat3(const real32 (&m)[3][3])
 
 //////////////////////////////////////////////////////////////////////////
 //	dtor
-mat3::~mat3()
+Matrix3x3::~Matrix3x3()
 {
 
 }
 
 //////////////////////////////////////////////////////////////////////////
 //	assignment operator
-//mat3& mat3::operator=(const real32 (&m)[3][3])
+//mat3& mat3::operator=(const real64 (&m)[3][3])
 //{
 //	m_matrix[0][0] = m[0][0];
 //	m_matrix[0][1] = m[0][1];
@@ -140,7 +140,7 @@ mat3::~mat3()
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3& mat3::operator=(const mat3& m)
+Matrix3x3& Matrix3x3::operator=(const mat3& m)
 {
 	//*this = m.m_matrix;
 	m_matrix[0][0] = m[0][0];
@@ -157,7 +157,7 @@ mat3& mat3::operator=(const mat3& m)
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3& mat3::operator=(const __matrix1x9& m)
+Matrix3x3& Matrix3x3::operator=(const __matrix1x9& m)
 {
 	m_matrix[0][0] = m._00;
 	m_matrix[0][1] = m._01;
@@ -191,31 +191,31 @@ mat3& mat3::operator=(const __matrix1x9& m)
 
 //////////////////////////////////////////////////////////////////////////
 //	access operators
-const real32* mat3::operator[](uint32 idx) const
+const real64* Matrix3x3::operator[](uint32 idx) const
 {
 	return m_matrix[idx];
 }
 
-real32* mat3::operator[](uint32 idx)
+real64* Matrix3x3::operator[](uint32 idx)
 {	// call const version of operator
-	return const_cast<real32*>(static_cast<const mat3&>(*this)[idx]);
+	return const_cast<real64*>(static_cast<const mat3&>(*this)[idx]);
 }
 
-const real32& mat3::operator()(uint32 row, uint32 col) const
+const real64& Matrix3x3::operator()(uint32 row, uint32 col) const
 {
 	return m_matrix[row][col];
 }
 
-real32& mat3::operator()(uint32 row, uint32 col)
+real64& Matrix3x3::operator()(uint32 row, uint32 col)
 {	// call const version of operator
-	return const_cast<real32&>(static_cast<const mat3&>(*this)(row, col));
+	return const_cast<real64&>(static_cast<const mat3&>(*this)(row, col));
 }
 
 //////////////////////////////////////////////////////////////////////////
 //	Arithmetic Operators
 
 //	addition
-mat3& mat3::operator+=(const mat3& m)
+Matrix3x3& Matrix3x3::operator+=(const mat3& m)
 {
 	m_matrix[0][0] += m.m_matrix[0][0];
 	m_matrix[0][1] += m.m_matrix[0][1];
@@ -231,7 +231,7 @@ mat3& mat3::operator+=(const mat3& m)
 }
 
 //	subtraction
-mat3& mat3::operator-=(const mat3& m)
+Matrix3x3& Matrix3x3::operator-=(const mat3& m)
 {
 	m_matrix[0][0] -= m.m_matrix[0][0];
 	m_matrix[0][1] -= m.m_matrix[0][1];
@@ -247,33 +247,32 @@ mat3& mat3::operator-=(const mat3& m)
 }
 
 //	multiplication
-mat3& mat3::operator*=(const mat3& m)
+Matrix3x3& Matrix3x3::operator*=(const mat3& m)
 {
-	return *this;
-	//return *this =
-	//{ 
-	//{	// first row
-	//	m_matrix[0][0] * m.m_matrix[0][0] + m_matrix[0][1] * m.m_matrix[1][0] + m_matrix[0][2] * m.m_matrix[2][0],
-	//	m_matrix[0][0] * m.m_matrix[0][1] + m_matrix[0][1] * m.m_matrix[1][1] + m_matrix[0][2] * m.m_matrix[2][1],
-	//	m_matrix[0][0] * m.m_matrix[0][2] + m_matrix[0][1] * m.m_matrix[1][2] + m_matrix[0][2] * m.m_matrix[2][2]
-	//} 
-	//,
-	//{	// second row
-	//	m_matrix[1][0] * m.m_matrix[0][0] + m_matrix[1][1] * m.m_matrix[1][0] + m_matrix[1][2] * m.m_matrix[2][0],
-	//	m_matrix[1][0] * m.m_matrix[0][1] + m_matrix[1][1] * m.m_matrix[1][1] + m_matrix[1][2] * m.m_matrix[2][1],
-	//	m_matrix[1][0] * m.m_matrix[0][2] + m_matrix[1][1] * m.m_matrix[1][2] + m_matrix[1][2] * m.m_matrix[2][2]
-	//}
-	//,
-	//{	// third row
-	//	m_matrix[2][0] * m.m_matrix[0][0] + m_matrix[2][1] * m.m_matrix[1][0] + m_matrix[2][2] * m.m_matrix[2][0],
-	//	m_matrix[2][0] * m.m_matrix[0][1] + m_matrix[2][1] * m.m_matrix[1][1] + m_matrix[2][2] * m.m_matrix[2][1],
-	//	m_matrix[2][0] * m.m_matrix[0][2] + m_matrix[2][1] * m.m_matrix[1][2] + m_matrix[2][2] * m.m_matrix[2][2]
-	//}
-	//};
+	return *this =
+	{ 
+	{	// first row
+		m_matrix[0][0] * m.m_matrix[0][0] + m_matrix[0][1] * m.m_matrix[1][0] + m_matrix[0][2] * m.m_matrix[2][0],
+		m_matrix[0][0] * m.m_matrix[0][1] + m_matrix[0][1] * m.m_matrix[1][1] + m_matrix[0][2] * m.m_matrix[2][1],
+		m_matrix[0][0] * m.m_matrix[0][2] + m_matrix[0][1] * m.m_matrix[1][2] + m_matrix[0][2] * m.m_matrix[2][2]
+	} 
+	,
+	{	// second row
+		m_matrix[1][0] * m.m_matrix[0][0] + m_matrix[1][1] * m.m_matrix[1][0] + m_matrix[1][2] * m.m_matrix[2][0],
+		m_matrix[1][0] * m.m_matrix[0][1] + m_matrix[1][1] * m.m_matrix[1][1] + m_matrix[1][2] * m.m_matrix[2][1],
+		m_matrix[1][0] * m.m_matrix[0][2] + m_matrix[1][1] * m.m_matrix[1][2] + m_matrix[1][2] * m.m_matrix[2][2]
+	}
+	,
+	{	// third row
+		m_matrix[2][0] * m.m_matrix[0][0] + m_matrix[2][1] * m.m_matrix[1][0] + m_matrix[2][2] * m.m_matrix[2][0],
+		m_matrix[2][0] * m.m_matrix[0][1] + m_matrix[2][1] * m.m_matrix[1][1] + m_matrix[2][2] * m.m_matrix[2][1],
+		m_matrix[2][0] * m.m_matrix[0][2] + m_matrix[2][1] * m.m_matrix[1][2] + m_matrix[2][2] * m.m_matrix[2][2]
+	}
+	};
 }
 
 //	scalar multiplication
-mat3& mat3::operator*=(real32 s)
+Matrix3x3& Matrix3x3::operator*=(real64 s)
 {
 	m_matrix[0][0] *= s;
 	m_matrix[0][1] *= s;
@@ -289,7 +288,7 @@ mat3& mat3::operator*=(real32 s)
 }
 
 // scalar division
-mat3& mat3::operator/=(real32 s)
+Matrix3x3& Matrix3x3::operator/=(real64 s)
 {
 	m_matrix[0][0] /= s;
 	m_matrix[0][1] /= s;
@@ -309,7 +308,7 @@ mat3& mat3::operator/=(real32 s)
 
 //////////////////////////////////////////////////////////////////////////
 //	if zero, there is no inverse
-real32 mat3::getdeterminant() const
+real64 Matrix3x3::getdeterminant() const
 {
 	return 
 		((m_matrix[0][0] * m_matrix[1][1] * m_matrix[2][2]) +
@@ -322,18 +321,18 @@ real32 mat3::getdeterminant() const
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3& mat3::invert()
+Matrix3x3& Matrix3x3::invert()
 {
 	mat3 tmp = *this;
-	real32 invdet = 1.0f / getdeterminant();
+	real64 invdet = 1.0f / getdeterminant();
 	m_matrix[0][0] = (tmp(1, 1)*tmp(2, 2) - tmp(2, 1)*tmp(1, 2))*invdet;
-	m_matrix[1][0] = -(tmp(0, 1)*tmp(2, 2) - tmp(0, 2)*tmp(2, 1))*invdet;
-	m_matrix[2][0] = (tmp(0, 1)*tmp(1, 2) - tmp(0, 2)*tmp(1, 1))*invdet;
-	m_matrix[0][1] = -(tmp(1, 0)*tmp(2, 2) - tmp(1, 2)*tmp(2, 0))*invdet;
+	m_matrix[0][1] = -(tmp(0, 1)*tmp(2, 2) - tmp(0, 2)*tmp(2, 1))*invdet;
+	m_matrix[0][2] = (tmp(0, 1)*tmp(1, 2) - tmp(0, 2)*tmp(1, 1))*invdet;
+	m_matrix[1][0] = -(tmp(1, 0)*tmp(2, 2) - tmp(1, 2)*tmp(2, 0))*invdet;
 	m_matrix[1][1] = (tmp(0, 0)*tmp(2, 2) - tmp(0, 2)*tmp(2, 0))*invdet;
-	m_matrix[2][1] = -(tmp(0, 0)*tmp(1, 2) - tmp(1, 0)*tmp(0, 2))*invdet;
-	m_matrix[0][2] = (tmp(1, 0)*tmp(2, 1) - tmp(2, 0)*tmp(1, 1))*invdet;
-	m_matrix[1][2] = -(tmp(0, 0)*tmp(2, 1) - tmp(2, 0)*tmp(0, 1))*invdet;
+	m_matrix[1][2] = -(tmp(0, 0)*tmp(1, 2) - tmp(1, 0)*tmp(0, 2))*invdet;
+	m_matrix[2][0] = (tmp(1, 0)*tmp(2, 1) - tmp(2, 0)*tmp(1, 1))*invdet;
+	m_matrix[2][1] = -(tmp(0, 0)*tmp(2, 1) - tmp(2, 0)*tmp(0, 1))*invdet;
 	m_matrix[2][2] = (tmp(0, 0)*tmp(1, 1) - tmp(1, 0)*tmp(0, 1))*invdet;
 
 	return *this;
@@ -341,7 +340,7 @@ mat3& mat3::invert()
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3 mat3::getinverse() const
+Matrix3x3 Matrix3x3::getinverse() const
 {
 	mat3 tmp = *this;
 	return tmp.invert();
@@ -349,9 +348,9 @@ mat3 mat3::getinverse() const
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3& mat3::transpose()
+Matrix3x3& Matrix3x3::transpose()
 {
-	real32 
+	real64 
 	tmp = m_matrix[0][1];
 	m_matrix[0][1] = m_matrix[1][0];
 	m_matrix[1][0] = tmp;
@@ -366,7 +365,7 @@ mat3& mat3::transpose()
 
 //////////////////////////////////////////////////////////////////////////
 //	
-mat3 mat3::gettranspose() const
+Matrix3x3 Matrix3x3::gettranspose() const
 {
 	mat3 return_mat = *this;
 	return return_mat.transpose();

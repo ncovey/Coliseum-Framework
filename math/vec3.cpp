@@ -1,7 +1,7 @@
 // 3D vector
 
 #include "vec3.h"
-#include "mat3.h"
+#include "Matrix3x3.h"
 #include "fastmath.h"
 
 using namespace CF;
@@ -70,7 +70,7 @@ vec3& vec3::operator*=(real32 s)
 
 //////////////////////////////////////////////////////////////////////////
 //	vector * matrix multiplication
-vec3& vec3::operator*=(const mat3& m)
+vec3& vec3::operator*=(const Matrix3x3& m)
 {
 	x *= (m[0][0] + m[1][0] + m[2][0]);
 	y *= (m[0][1] + m[1][1] + m[2][1]);

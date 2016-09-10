@@ -27,4 +27,7 @@
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="June2010SDK\Readme.txt" />
+  </ItemGroup>
 </Project>

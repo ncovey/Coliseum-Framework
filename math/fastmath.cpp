@@ -9,7 +9,7 @@ using namespace CF;
 using namespace AfterMath;
 
 // acceptable amount of error
-const real32 AFTERMATH_APPROXIMATION_PRECISION = 5e-7;
+const real64 AFTERMATH_APPROXIMATION_PRECISION = 5e-7;
 
 //////////////////////////////////////////////////////////////////////////
 // absolute value
@@ -25,7 +25,7 @@ inline real64	AfterMath::abs(real64 value)	{ AFTERMATH_FASTMATH_ABS(value); }
 //	with:
 //	value*value*value*value*1
 //	hopefully it should "unwind" the inline function calls rather jumping to an actual callback
-//	how do I know it's doing that???
+//	how do I know it's doing that??? (look at disassembly)
 inline int32 
 AfterMath::fpow(int32 base, uint32 power)
 {

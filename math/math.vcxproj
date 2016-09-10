@@ -139,7 +139,7 @@
   <ItemGroup>
     <ClInclude Include="constants.h" />
     <ClInclude Include="fastmath.h" />
-    <ClInclude Include="mat3.h" />
+    <ClInclude Include="Matrix3x3.h" />
     <ClInclude Include="mat4.h" />
     <ClInclude Include="quat.h" />
     <ClInclude Include="vec3.h" />
@@ -147,7 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="fastmath.cpp" />
-    <ClCompile Include="mat3.cpp" />
+    <ClCompile Include="Matrix3x3.cpp" />
     <ClCompile Include="vec3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

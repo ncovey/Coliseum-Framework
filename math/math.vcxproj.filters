@@ -30,10 +30,10 @@
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mat3.h">
+    <ClInclude Include="mat4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mat4.h">
+    <ClInclude Include="Matrix3x3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClCompile Include="fastmath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mat3.cpp">
+    <ClCompile Include="Matrix3x3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
